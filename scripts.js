@@ -25,9 +25,9 @@
 const todoList = [
   // Hér er hægt að fjarlægja komment til að hafa nokkur verkefni í byrjun
   // Ekki skila með þessu inni.
-  { text: "Læra CSS", finished: true },
+  /*{ text: "Læra CSS", finished: true },
   { text: "Læra JavaScript", finished: false },
-  { text: "Búa til verkefnalista", finished: false },
+  { text: "Búa til verkefnalista", finished: false },*/
 ];
 
 //------------------------------------------------------------------------------
