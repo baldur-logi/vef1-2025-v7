@@ -25,13 +25,15 @@
 const todoList = [
   // Hér er hægt að fjarlægja komment til að hafa nokkur verkefni í byrjun
   // Ekki skila með þessu inni.
-  // { text: "Læra CSS", finished: true },
-  // { text: "Læra JavaScript", finished: false },
-  // { text: "Búa til verkefnalista", finished: false },
+  { text: "Læra CSS", finished: true },
+  { text: "Læra JavaScript", finished: false },
+  { text: "Búa til verkefnalista", finished: false },
 ];
 
 //------------------------------------------------------------------------------
 // Föll sem vinna með verkefnalistann
+
+console.log("halló frá scripts.js");
 
 /**
  * Búa til verkefni og bæta því aftast í verkefnalistann.
@@ -39,14 +41,26 @@ const todoList = [
  * @returns {number} Ný stærð verkefnalistans.
  */
 function createTodoItem(input) {
-  /* TODO útfæra */
+  if (typeof input === "string") {
+    const item = {
+      text: input,
+      finished: false,
+    };
+
+    return todoList.push(item)
+  }
+
+  console.error("input verður að vera strengur, en var", typeof input)
+  return -1;
 }
 
 /**
  * Birtir verkefnalistann í console.
  */
 function list() {
-  /* TODO útfæra */
+  for (const todoItem of todoList) {
+    console.log(todoItem.text, "er", todoItem.finished ? "búið" : "ekki búið")
+  }
 }
 
 /**
@@ -56,21 +70,34 @@ function list() {
  * @returns {boolean} - `true` ef breyting tókst, annars `false`.
  */
 function toggleFinished(index) {
-  /* TODO útfæra */
+  todoList[index].finished = !todoList[index].finished
+  console.log(todoList[index].text, "er nú", todoList[index].finished ? "búið" : "ekki búið")
 }
 
 /**
  * Skrifar út stöðu verkefnalistans í console.
  */
 function stats() {
-  /* TODO útfæra */
+  let fjöldiFinished = 0
+  let fjöldiUnfinished = 0
+
+  for (let i = 0; i < todoList.length; i++) {
+    if (todoList[i].finished) {
+      fjöldiFinished++
+     } else {
+      fjöldiUnfinished++
+     }
+  }
+
+  console.log("Klárað: ", fjöldiFinished, " Óklárað: ", fjöldiUnfinished)
 }
 
 /**
  * Tæma verkefnalistann.
  */
 function clear() {
-  /* TODO útfæra */
+  todoList.length = 0
+  console.log("Verkefni hafa verið tæmd")
 }
 
 /**
@@ -78,4 +105,14 @@ function clear() {
  */
 function start() {
   /* TODO útfæra */
+  console.log("Skrifaðu eins mörg verkefni og þú vilt, ýttu svo á enter á milli verkefna.")
+  console.log("Skrifaðu 0 og enter til að klára")
+
+  console.log("TODO")
+
+
+
+
+
+
 }
