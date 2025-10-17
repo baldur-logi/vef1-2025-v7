@@ -70,8 +70,12 @@ function list() {
  * @returns {boolean} - `true` ef breyting tókst, annars `false`.
  */
 function toggleFinished(index) {
+  if (0 <= index && index < todoList.length) {
   todoList[index].finished = !todoList[index].finished
   console.log(todoList[index].text, "er nú", todoList[index].finished ? "búið" : "ekki búið")
+  } else {
+    console.error("Ekki gilt verkefnanúmer. Númer þarf að vera tala verkefnis í lista -1")
+  }
 }
 
 /**
@@ -96,23 +100,47 @@ function stats() {
  * Tæma verkefnalistann.
  */
 function clear() {
+  if (0 < todoList.length) {
+  console.log("Það eru ", todoList.length, " verkefni í listanum")
+  let staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða " + todoList.length + " verkefnum")
+
+  if (staðfesting === "staðfesta") {
   todoList.length = 0
   console.log("Verkefni hafa verið tæmd")
+  } else {
+    console.log("'staðfesta' ekki stimplað, engu var eytt")
+  }
+  } else {
+    console.log("Það eru engin verkefni í listanum, endilega bæta þeim við")
+  }
 }
 
 /**
  * Leiðbeint ferli til að bæta verkefnum við, sýnir síðan lista og stöðu.
  */
 function start() {
-  /* TODO útfæra */
-  console.log("Skrifaðu eins mörg verkefni og þú vilt, ýttu svo á enter á milli verkefna.")
-  console.log("Skrifaðu 0 og enter til að klára")
 
-  console.log("TODO")
+  console.log("Skrifaðu eins mörg verkefni og þú vilt með enter á milli verkefn og 0 til að klára.")
 
 
+  let klárað = false
+  let verkefni
 
+  while (!klárað) {
+    verkefni = prompt("Skrifaðu verkefni og svo enter. Skrifaðu 0 og enter til að klára")
 
+    if (verkefni === "0") {
+      klárað = true
+    } else if (typeof verkefni === "string" && verkefni.trim() !== "") {
+      todoList.push({text: verkefni, finished: false})
 
+    } else {
+      alert("Ekki gilt verkefni, verkefni þarf að vera strengur")
+    }
 
-}
+    }
+
+    list()
+
+    stats()
+  }
