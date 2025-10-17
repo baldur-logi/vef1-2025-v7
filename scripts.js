@@ -71,8 +71,8 @@ function list() {
  */
 function toggleFinished(index) {
   if (0 <= index && index < todoList.length) {
-  todoList[index].finished = !todoList[index].finished
-  console.log(todoList[index].text, "er nú", todoList[index].finished ? "búið" : "ekki búið")
+    todoList[index].finished = !todoList[index].finished
+    console.log(todoList[index].text, "er nú", todoList[index].finished ? "búið" : "ekki búið")
   } else {
     console.error("Ekki gilt verkefnanúmer. Númer þarf að vera tala verkefnis í lista -1")
   }
@@ -88,9 +88,9 @@ function stats() {
   for (let i = 0; i < todoList.length; i++) {
     if (todoList[i].finished) {
       fjöldiFinished++
-     } else {
+    } else {
       fjöldiUnfinished++
-     }
+    }
   }
 
   console.log("Klárað: ", fjöldiFinished, " Óklárað: ", fjöldiUnfinished)
@@ -102,22 +102,22 @@ function stats() {
 function clear() {
 
   let staðfesting
-  
+
   if (0 < todoList.length) {
-    if(todoList.length !== 1) {
-  console.log("Það eru ", todoList.length, " verkefni í listanum")
-  staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða " + todoList.length + " verkefnum")
+    if (todoList.length !== 1) {
+      console.log("Það eru ", todoList.length, " verkefni í listanum")
+      staðfesting = prompt("Skrifaðu 'Y' og ýttu á enter til að eyða " + todoList.length + " verkefnum, Escape til að hætta við")
     } else {
-      console.log("Það er 1 verkefni í listanum") 
-      staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða 1 verkefni")
+      console.log("Það er 1 verkefni í listanum")
+      staðfesting = prompt("Skrifaðu 'Y' og ýttu á enter til að eyða 1 verkefni, Escape til að hætta við")
     }
 
-  if (staðfesting === "staðfesta") {
-  todoList.length = 0
-  console.log("Verkefni hafa verið tæmd")
-  } else {
-    console.log("'staðfesta' ekki stimplað, engu var eytt")
-  }
+    if (staðfesting !== null && staðfesting.toLowerCase() === "y") {
+      todoList.length = 0
+      console.log("Verkefni hafa verið tæmd")
+    } else {
+      console.log("'Y' ekki stimplað, engu var eytt")
+    }
   } else {
     console.log("Það eru engin verkefni í listanum, endilega bæta þeim við")
   }
@@ -135,20 +135,20 @@ function start() {
   let verkefni
 
   while (!klárað) {
-    verkefni = prompt("Skrifaðu verkefni og svo enter. Skrifaðu 0 og enter til að klára")
+    verkefni = prompt("Skrifaðu verkefni og svo enter. Skrifaðu 0 og enter eða ýttu á Escape til að klára")
 
     if (verkefni === "0" || verkefni === null) {
       klárað = true
     } else if (typeof verkefni === "string" && verkefni.trim() !== "") {
-      todoList.push({text: verkefni, finished: false})
+      todoList.push({ text: verkefni, finished: false })
 
     } else {
       alert("Ekki gilt verkefni, verkefni þarf að vera strengur")
     }
 
-    }
-
-    list()
-
-    stats()
   }
+
+  list()
+
+  stats()
+}
