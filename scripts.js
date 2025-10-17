@@ -70,11 +70,15 @@ function list() {
  * @returns {boolean} - `true` ef breyting tókst, annars `false`.
  */
 function toggleFinished(index) {
+  if (typeof index === "number") {
   if (0 <= index && index < todoList.length) {
     todoList[index].finished = !todoList[index].finished
     console.log(todoList[index].text, "er nú", todoList[index].finished ? "búið" : "ekki búið")
   } else {
     console.error("Ekki gilt verkefnanúmer. Númer þarf að vera tala verkefnis í lista -1")
+  }
+  } else {
+    console.error("Ekki gilt verkefnanúmer, verður að vera tala verkefnis í lista -1")
   }
 }
 
