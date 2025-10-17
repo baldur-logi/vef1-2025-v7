@@ -100,9 +100,17 @@ function stats() {
  * Tæma verkefnalistann.
  */
 function clear() {
+
+  let staðfesting
+  
   if (0 < todoList.length) {
+    if(todoList.length !== 1) {
   console.log("Það eru ", todoList.length, " verkefni í listanum")
-  let staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða " + todoList.length + " verkefnum")
+  staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða " + todoList.length + " verkefni/verkefnum")
+    } else {
+      console.log("Það er 1 verkefni í listanum") 
+      staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða 1 verkefni")
+    }
 
   if (staðfesting === "staðfesta") {
   todoList.length = 0
@@ -129,7 +137,7 @@ function start() {
   while (!klárað) {
     verkefni = prompt("Skrifaðu verkefni og svo enter. Skrifaðu 0 og enter til að klára")
 
-    if (verkefni === "0") {
+    if (verkefni === "0" || verkefni === null) {
       klárað = true
     } else if (typeof verkefni === "string" && verkefni.trim() !== "") {
       todoList.push({text: verkefni, finished: false})
