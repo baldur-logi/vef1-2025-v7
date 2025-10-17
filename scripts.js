@@ -106,7 +106,7 @@ function clear() {
   if (0 < todoList.length) {
     if(todoList.length !== 1) {
   console.log("Það eru ", todoList.length, " verkefni í listanum")
-  staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða " + todoList.length + " verkefni/verkefnum")
+  staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða " + todoList.length + " verkefnum")
     } else {
       console.log("Það er 1 verkefni í listanum") 
       staðfesting = prompt("Skrifaðu 'staðfesta' (case sensitive) til að eyða 1 verkefni")
